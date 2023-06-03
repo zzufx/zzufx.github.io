@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casual Modern PGM</title>
+  <link rel="icon" type="image/x-icon" href="cmp_classic.png">
+  <style>
+    #cmp_logo, #cmp_logo:hover {
+      text-align: center;
+    }
+    #cmp_classic{
+      display:none;
+    }
+    #cmp_logo:hover #cmp_modern{
+      display:none;
+    }
+    #cmp_logo:hover #cmp_classic{
+      display:inline-block;
+    }
+    body {
+      font-family: Tahoma, sans-serif;
+      margin: 0;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      background: linear-gradient(180deg,rgba(2, 0, 36, 1) 0%, rgba(0, 51, 5, 1) 35%, rgba(0, 102, 2, 1) 100%);
+      color: #FFF;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+    .shoutouts {
+      margin-top: -40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shoutouts h4 {
+      text-align: center;
+      text-decoration: none;
+      font-weight: normal;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .shoutouts img {
+      width: 12px;
+      height: 12px;
+      justify-content: center;
+    }
+    a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    u {    
+        border-bottom: 1px dotted;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 312px);
+      grid-gap: 14px;
+      padding: 0;
+      list-style-type: none;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .card {
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: filter 0.3s ease-in-out;
+    }
+    .card:hover {
+      filter: brightness(1.2);
+    }
+    .card-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 250px;
+      background-color: rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    .card-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .titles {
+      margin-bottom: 15px;
+    }
+    .title-block {
+      margin-bottom: 10px;
+    }
+    .title-block h3 {
+      margin: 0;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .title-block small {
+      margin: 0;
+      font-size: 0.8em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .title-block h4 {
+      margin: 2px 0 0;
+      font-size: 1em;
+      font-weight: normal;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .title-block small2 {
+      margin: 0;
+      font-size: 0.8em;
+      font-weight: normal;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .mcr {
+      display: flex;
+      align-items: center;
+      font-style: normal;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.9em;
+      justify-content: center;
+      text-decoration: none;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: auto;
+    }
+    .author {
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      font-style: normal;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9em;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .author:not(:last-child)::after {
+      content: ", ";
+    }
+    .author img {
+      width: 24px;
+      height: 24px;
+      border-radius: 5%;
+      margin-right: 6px;
+    }
+    .extra {
+      align-items: center;
+      margin-top: auto;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9em;
+      justify-content: center;
+    }
+    .carousel-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 40px;
+    }
+    .preview {
+      width: 10%;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      border-radius: 10px;
+    }
+    .preview:hover {
+      opacity: 0.8;
+    }
+    .main-image {
+      width: 40%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .nav-buttons {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="cmp_logo">
+    <img src="cmp_modern.png" id="cmp_modern" width="192" height="192"/>
+    <img src="cmp_classic.png" id="cmp_classic"  width="192" height="192"/>
+  </div>
+  <h1>Casual Modern PGM</h1>
+  <h3>Maps designed or enhanced for 1.21.1+ PGM gameplay</h3>
+  <center><b><a href="https://github.com/CasualModernPGM"><img width="15px" src="icons/github.svg"/> GitHub organization</a></b></center><br/>
+  <center><b><a href="https://github.com/CasualModernPGM/ModernMaps"><img width="15px" src="icons/github.svg"/> Map repository</a></b></center><br/><br/>
+  
+  <div class="carousel-wrapper">
+    <img class="preview" id="prevPreview" src="" alt="Previous">
+    <img class="main-image" id="mainImage" src="" alt="">
+    <img class="preview" id="nextPreview" src="" alt="Next">
+  </div>
+
+  <script>
+    const images = [
+      "action/beyond.png",
+      "action/fun_house.png",
+      "action/xolotl.png",
+      "action/iguazu.png",
+      "action/militia.png",
+      "action/graveyard_shift.png",
+      "action/ghast_jockey.png",
+      "action/pool_day.png",
+      "action/shattered_void.png",
+      "action/thistle.png",
+      "action/trial_chambers.png",
+      "action/zzuf_i_shrunk_the_bridgers.png",
+      "action/st_marc.png"
+    ];
+
+    let index = 0;
+
+    function updateCarousel() {
+      const main = document.getElementById("mainImage");
+      const prev = document.getElementById("prevPreview");
+      const next = document.getElementById("nextPreview");
+
+      main.src = images[index];
+      prev.src = images[(index - 1 + images.length) % images.length];
+      next.src = images[(index + 1) % images.length];
+    }
+
+    function nextImage() {
+      index = (index + 1) % images.length;
+      updateCarousel();
+    }
+
+    function prevImage() {
+      index = (index - 1 + images.length) % images.length;
+      updateCarousel();
+    }
+
+    document.getElementById("prevPreview").onclick = prevImage;
+    document.getElementById("nextPreview").onclick = nextImage;
+
+    updateCarousel();
+  </script>
+
+  <div class="shoutouts"><h4>Brought to you by <a href="https://oc.tc/zzuf"><img width="24px" height="24px" src="players/zzuf.png"/> zzuf</a> and <a href="https://oc.tc/Eliminate"><img width="24px" height="24px" src="players/Eliminate.png"/> Eliminate</a>.</h4></div>
+  <div class="shoutouts"><h4>Special thanks to <a href="https://oc.tc/cs_"><img width="24px" height="24px" src="players/cs_.png"/> cs_</a> for providing our first playtesting server.</h4></div>
+  <div class="gallery">
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/polynesia.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Polynesia: Trident RAGE</h3>
+            <h4>Deathmatch (Trident RAGE)</h4>
+          </div>
+          <div class="title-block">
+            <h3>Polynesia</h3>
+            <small>(formerly Polynesia: Enhanced)</small>
+            <h4>One in the Quiver</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=polynesia&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/trial_chambers.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Trial Chambers</h3>
+            <h4>Team Deathmatch (Laser Tag)</h4>
+          </div>
+          <div class="title-block">
+            <h3>Trial Chambers: Blitz</h3>
+            <h4>Blitz: Laser Tag</h4>
+          </div>
+          <div class="title-block">
+            <h3>Trial Chambers: Crossbow Blast</h3>
+            <h4>Crossbow Blast</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=trial chambers&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/beyond.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Beyond</h3>
+            <h4>One in the Quiver</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=beyond&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/dizzy.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Dizzy</h3>
+            <h4>Flying Scoutsman/Scoutzknivez</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=dizzy&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/erratic.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Erratic</h3>
+            <h4>Trident RAGE, Team Deathmatch, Scorebox</h4>
+          </div>
+          <div class="title-block">
+            <h3>Erratic: Blitz</h3>
+            <h4>Blitz: Trident RAGE</h4>
+          </div>
+          <div class="title-block">
+            <h3>Erratic: Lifesteal</h3>
+            <h4>Trident RAGE, Blitz: Lifesteal</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=erratic&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/random_items.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Random Items</h3>
+            <h3>Random Items: Void</h3>
+            <h3>Random Items: BFP</h3>
+            <h3>Random Items: Upside Down</h3>
+            <h3>Random Items: Horsing Around</h3>
+            <h4>Arcade</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=random items&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/pool_day.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Pool Day</h3>
+            <h4>Counter-Strat: Fight Yard</h4>
+            <small2>(Round-based TDM, Capture Point)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=pool day&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <div class="authors">
+          <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+          <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/potrzebie.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Potrzebie</h3>
+            <h4>Elytra/Mace Tiny TDM</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=potrzebie&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/st_marc.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>St. Marc</h3>
+            <h4>Counter-Strat: Point</h4>
+            <small2>(Round-based TDM, Capture Point)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=st. marc&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/fun_house.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Fun House</h3>
+            <h4>Size-shifting TDM</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=fun house&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/mmb_anthill.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>MMB: Anthill</h3>
+            <h4>(Micro) Micro Battles</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=mmb: anthill&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <div class="authors">
+          <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+          <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/whac_a_mole.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Whac-A-Mole</h3>
+            <h3>Whac-A-Mole: Bleak</h3>
+            <h4>Mace TDM</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=whac-a-mole&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/militia.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Militia</h3>
+            <h4>Counter-Strat: Hostage</h4>
+            <small2>(Round-based TDM, Capture the Flag)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=militia&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <div class="authors">
+          <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+          <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/thistle.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Thistle</h3>
+            <h4>Tension</h4>
+            <small2>(Bridge-like gamemode with scaffolding)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=thistle&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/shattered_void.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Shattered Void</h3>
+            <h4>Bridge</h4>
+          </div>
+        </div>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/tug_of_war_intense_tugging.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Tug of War: Intense Tugging</h3>
+            <h4>Tug of War</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=tug of war intense tugging&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/ghast_jockey.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>GHAST JOCKEY</h3>
+            <h4>Blitz</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=ghast jockey&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/graveyard_shift.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Graveyard Shift</h3>
+            <h4>Ghost Squadron</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=graveyard shift&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/iguazu.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Iguazú</h3>
+            <h4>Destroy the Monument</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=iguazú&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/mefino_dtm.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Mefino DTM</h3>
+            <h4>Destroy the Monument</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=mefino dtm&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/DerStiv.png"/> DerStiv</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/xolotl.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Xolotl</h3>
+            <h4>Flag Assault, Scorebox</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=xolotl&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/cirrus_park.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Cirrus Park</h3>
+            <h4>King of the Flag</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=cirrus park&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/tartarus.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Tartarus</h3>
+            <h4>Tension</h4>
+            <small2>(Bridge-like gamemode with scaffolding)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=tartarus&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/allure.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Allure</h3>
+            <h4>Capture the Wool</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=allure&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/jcane"><img src="players/jcane.png"/> jcane</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/fb_data_rush_cmp_edition.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>FB: Data-Rush ⟨CMP Edition⟩</h3>
+            <h4>Flag Battles</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=fb:%20data-rush%20%E2%9F%A8CMP%20edition%E2%9F%A9&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Technodono"><img src="players/Technodono.png"/> Technodono</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/the_grand_dueling_tournament_iii.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>The Grand Dueling Tournament III</h3>
+            <h4>Arcade</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=the grand dueling tournament iii&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <div class="authors">
+          <a class="author" href="https://oc.tc/mitchiii"><img src="players/mitchiii.png"/> mitchiii</a>
+          <a class="author" href="https://oc.tc/Technodono"><img src="players/Technodono.png"/> Technodono</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/random_items_item_link.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Random Items: Item Link</h3>
+            <h3>Random Items: KOTF</h3>
+            <h4>Arcade</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=random items: item link&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Eliminate"><img src="players/Eliminate.png"/> Eliminate</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/mb_wootonia_deluxe.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>MB: Wootonia Deluxe</h3>
+            <h4>Micro Battles</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=MB:%20Wootonia%20Deluxe&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/Technodono"><img src="players/Technodono.png"/> Technodono</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/chicken_jockey.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>CHICKEN JOCKEY</h3>
+            <h4>Arcade</h4>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=chicken jockey&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/thistle_mini.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Thistle Mini</h3>
+            <h4>Tension</h4>
+            <small2>(Bridge-like gamemode with scaffolding)</small2>
+          </div>
+        </div>
+        <a class="mcr" href="https://mcresourcepile.github.io/maps/pgm?query=thistle mini&match=all&invert=false&highest_version=false">ResourcePile</a>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="maps/radiant.png"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Radiant</h3>
+            <h4>Crystal PvP</h4>
+          </div>
+        </div>
+        <a class="author" href="https://oc.tc/zzuf"><img src="players/zzuf.png"/> zzuf</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-container">
+        <img src="fine_shyt.gif"/>
+      </div>
+      <div class="card-content">
+        <div class="titles">
+          <div class="title-block">
+            <h3>Your map!</h3>
+            <h4>Create a map for 1.21.11 and let <span class="tooltip" title="zzuf or Eliminate"><u>us</u></span> know!</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="extra">Last update: 2026-02-17</p>
+  </div>
+</body>
+</html>
