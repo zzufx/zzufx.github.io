@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <title>zzuf</title>
@@ -37,33 +37,32 @@
             <table border="1">
                 <tr>
                     <td><a href="https://zzufx.github.io"><strong>Main page</strong></a></td>
-                    <td><a href="https://zzufx.github.io/item_sumo.html">PGM Item Sumo Documentation</a></td>
+                    <td><a href="https://zzufx.github.io/bridge.html">PGM Bridge Documentation</a></td>
                 </tr>
             </table>
         </center>
         <hr/>
         <center>
-            <h1><b>PvP Game Manager: Bridge Gamemode</b></h1>
+            <h1><b>PvP Game Manager: Item Sumo Gamemode</b></h1>
 			<p><em>Information on how to manipulate the
-			<a href="https://github.com/zzufx/zzuf-maps/blob/master/includes/bridge.xml">
-			bridge.xml</a> include file developed by zzuf for the open source
+			<a href="https://github.com/zzufx/zzuf-maps/blob/master/includes/item-sumo.xml">
+			item-sumo.xml</a> include file developed by zzuf for the open source
 			<a href="https://pgm.dev">PGM</a> plugin.<br><br></em><strong>All 
-			information is up to date as of include version 2024.03.10-1.</strong></p>
-			<h2>Removing Match Timelimits</h2>
-			<p>As of version 2024.03.10-1, you can remove the timelimit in a 
-			match by just running <span class="auto-style5">/action trigger 
-				remove-timelimit</span>.</p>
-			<h3>Older versions (pre 2024.03.10-1)</h3>
-			<p>To remove timelimits on the previous versions of the include, you 
-			must follow these two steps:</p>
-			1. Run <span class="auto-style5">/cancel</span> to cancel all 
-				countdowns.<br>
-			2. Run <span class="auto-style5">/action trigger 
-				remove-timelimit</span>.
+			information is up to date as of include version 2024.03.11-2.</strong></p>
+			<h2>Toggling hills</h2>
+			<p>&nbsp;You can run&nbsp; <span class="auto-style5">/variable set 
+			hill_disabled 1</span> to disable hills, and<br>&nbsp;<span class="auto-style5">/variable 
+			set hill_disabled 0</span> to re-enable them.<br><br>A message will 
+			appear along with a sound effect to let everyone know. <br><br>If 
+			the blocks below the hill and the value in the map's <em>
+			hill-block-on</em> constant match,<br>those blocks will get changed 
+			to whatever <em>hill-block-off</em> is (and viceversa)<br><br>This 
+			means that by default, Emerald Blocks will get converted to Coal 
+			Blocks.</p>
         </center>
         <hr/>
         <p>
-            <i> � zzuf</i>
+            <i> © zzuf</i>
         </p>
 		<p>
         	<a href="https://zzufx.github.io"><img src="btn/zzuf/zzufbuttonNOW.gif" alt="zzuf's Test Page Button 2"><img src="btn/zzuf/zzufbutton.gif" alt="zzuf's Test Page Button"></a>
